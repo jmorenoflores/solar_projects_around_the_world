@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The landing page for data analysis on solar projects around the world. Practicum data science students and software engineering students created this webpage to present 
+      findings from data anlysis on solar projects around the world."
+    />
+    <meta name="author" content="Timothy Horth" />
+    <meta name="author" content="Javier Moreno Flores" />
+    <meta
+      name="keywords"
+      content="Solar, Energy, Data, Analysis, Science, Information, Capacity"
+    />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="icon" href="./favicon.ico" sizes="32x32" type="image/png" />
+    <title>Solar Projects Around the World</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <img class="header__image-container" src="images/header_background.svg" alt="solar panels near house graphic">
+      <h1 class="header__title">Solar Power, Brightening Up Your World</h1>
+      <h2 class="header__prompt">How does solar capacity compare across the world?</h2>
+      <p class="header__overview">Harnessing solar energy for urban and commercial use has become more popular over the past decades. Not only is solar energy a green alternative to fossil fuels,
+        but it can cut down on the electricity bill, too! Many homeowners have begun having solar panels installed on their roofs to do their part in being green and saving money on their electricity bill. Even
+        companies and big corporations have taken notice of the benefits of going solar! Countless solar projects have been developed or are in the works to be developed all over the world. However, while
+        most countries have engaged in solar energy production, the number of solar projects and their total capacity can range from a single solar farm producing 10 MegaWatts [MW] of energy to thousands of solar
+        farms producing hundreds of GigaWatts [GW].<br>
+        <br>
+        To see how solar projects compared across the world, a dataset of various solar projects was obtained, explored, preprocessed, and plotted in various ways to present important information about
+        solar energy in countries around the world. The data analysis that was performed in Jupyter Notebook is provided in the below window, as well as a kernel density plot showing project capacity by latitude, a hexbin plot showing
+        project capacity by longitude, a violin boxplot showing project capacity by region, and a bar chart showing the highest total capacities of countries around the world. Lastly, an interactive map
+        is provided that allows the user to view the total solar capacity and total number of projects of each country.
+      </p>
+      <div class="header__sun"></div>
+      <div class="header__sun header__sun_animation_blurred"></div>
+    </header>
+    <section class="nav">
+      <div class="nav__container">
+        <ul class="nav__bar">
+          <li class="nav__button-container">
+            <a class="nav__button-link" href="#data analysis">
+              <p class="nav__button-text">Data Analysis</p>
+            </a>
+          </li>
+          <li class="nav__button-container">
+            <a class="nav__button-link" href="#capacity vs latitude">
+              <p class="nav__button-text">Capacity by Latitude</p>
+            </a>
+          </li>
+          <li class="nav__button-container">
+            <a class="nav__button-link" href="#capacity vs longitude">
+               <p class="nav__button-text">Capacity by Longitude</p>
+            </a>
+          </li>
+          <li class="nav__button-container">
+            <a class="nav__button-link" href="#capacity by region">
+              <p class="nav__button-text">Capacity by Region</p>
+            </a>
+          </li>
+          <li class="nav__button-container">
+            <a class="nav__button-link" href="#capacity by country">
+              <p class="nav__button-text">Capacity by Country</p>
+            </a>
+          </li>
+          <li class="nav__button-container">
+            <a class="nav__button-link" href="#interactive map">
+              <p class="nav__button-text">Interactive Map</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="data">
+      <h2 class="data__title" id="data analysis">Data Analysis</h2>
+      <h3 class="data__subheader">Raw Data (Excel Workbook)</h3>
+      <div class="data__iframe-container">
+        <iframe class="data__iframe-excel" width="100%" height="100%" frameborder="0" scrolling="yes" src="https://onedrive.live.com/embed?resid=7CBA3B309B11419B%21153&authkey=%21ABysc7TJeCb3S6E&em=2&wdAllowInteractivity=False&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false"></iframe>
+      </div>
+      <h4 class="data__subtitle">[DATASET 1: The Excel workbook that our team utilized for data analysis]</h4>
+      <p class="data__writeup data__writeup_type_before-list">The data was originally composed of 27 columns and 9.331 entries, with each entry representing the statistical description of a solar energy project.
+        The columns that were selected for this analysis include the following:</p>
+      <ul class="data__list">
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'country'</span>: <span class="data__list-text-italic">country where the project is located</span></p>
+        </li>
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'status'</span>: <span class="data__list-text-italic">status of the project from one of the options: 'operating', 'cancelled', 'shelved', 'announced', 'development', 'construction', and 'retired'</span></p>
+        </li>
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'latitude'</span>: <span class="data__list-text-italic">latitude degrees where the project is located</span></p>
+        </li>
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'longitude'</span>: <span class="data__list-text-italic">longitude degrees where the project is located</span></p>
+        </li>
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'city'</span>: <span class="data__list-text-italic">city where the project is located</span></p>
+        </li>
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'region'</span>: <span class="data__list-text-italic">continental region where the project is located</span></p>
+        </li>
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'capacity_mw'</span>: <span class="data__list-text-italic">capacity in megawatts rounded ot the nearest number</span></p>
+        </li>
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'state_province'</span>: <span class="data__list-text-italic">state or province where the project is located</span></p>
+        </li>
+        <li class="data__list-item">
+          <p class="data__list-text"><span class="data__list-text-bold">'latitude_range'</span>: <span class="data__list-text-italic">latitude range in intervals of 30 degrees in the range from -90 to 90 degrees</span></p>
+        </li>
+      </ul>
+      <p class="data__writeup data__writeup-before-jupyter">The columns in the raw data were checked for missing values and errors, such as misspellings. The missing values for columns that had categorical data, such as in column 'status' 
+        were replaced by 'unknown' values. In the dataset, there were not missing values for columns with numerical data.
+      </p>
+      <h3 class="data__subheader data__subheader-jupyter">Data Preprocessing (Jupyter Notebook)</h3>
+      <div class="data__iframe-container data__iframe-container-jupyter">
+        <iframe class="data__iframe-jupyter" width="100%" height="100%" scrolling="yes" src="https://timothyhorth.github.io/jupyter_notebook_index_file/"></iframe>
+      </div>
+      <h4 class="data__subtitle data__subtitle_type_jupyter">[NOTEBOOK 1: The above Jupyter Notebook depicts the data preprocessing that was performed]</h4>
+  </section>
+    <section class="data">
+      <h2 class="data__title" id="capacity vs latitude">Capacity vs. Latitude</h2>
+      <img class="data__graph-img data__graph-img_type_latitude" src="./images/kdeplot.png" alt="kernel density plot showing capacity vs. latitude">
+      <h4 class="data__subtitle">[FIGURE 1: Kernel density distribution of capacity production, in MW, versus latitude, in degrees]</h4>
+      <p class="data__writeup">Figure 1 shows the kernel density estimate of capacity production versus latitude. Since latitude is a continuous variable, the kernel
+        density estimate plot was chosen to illustrate the probability and density of capacity production between values of -90 and 90 degrees for latitude.
+      </p>
+    </section>
+    <section class="data">
+      <h2 class="data__title" id="capacity vs longitude">Capacity by Longitude</h2>
+      <img class="data__graph-img data__graph-img_type_longitude" src="./images/hexbin.png" alt="hexbin plot showing capacity by country">
+      <h4 class="data__subtitle">[FIGURE 2: Distribution of capacity production, in MW, versus latitude in degrees]</h4>
+      <p class="data__writeup">Figure 2 depicts the distribution of capacity production, without outliers, versus longitude. The distribution is illustrated in a hexbin plot, which illustrates
+         the density distribution. The scale on the right side of the plot describes the density based on the density of intersections in each hexagon.
+      </p>
+    </section>
+    <section class="data">
+      <h2 class="data__title" id="capacity by region">Capacity by Region</h2>
+      <img class="data__graph-img data__graph-img_type_region" src="./images/violin_plot.png" alt="violin boxplot">
+      <h4 class="data__subtitle">[FIGURE 3: Distribution of capacity, in MW, per continental region, excluding outliers]</h4>
+      <p class="data__writeup">Figure 3 illustrates violin-plots, which portray boxplots and the kernel density estimate of capacity distribution in MW, without outliers, of each continental
+         region. The regions that presented the highest capacity, on average, were Oceania, North America, and Africa with mean values of 40.54 MW, 39.83 MW, and 34.64 MW, respectively.
+      </p>
+    </section>
+    <section class="data">
+      <h2 class="data__title" id="capacity by country">Capacity by Country</h2>
+      <img class="data__graph-img data__graph-img_type_barchart" src="./images/barchart.png" alt="bar chart showing capacity by country">
+      <h4 class="data__subtitle">[FIGURE 4: Capacity production per country]</h4>
+      <p class="data__writeup">Figure 4 illustrates the distribution of capacity, in MW, per country. Countries that produce less than 2,000 MW were placed into the 'other' category. The countries 
+        that presented the highest capacity production include: United States, China, India, and Australia, which presented capacity values of 160.378 GW, 139.994 GW, 62.675 GW, and 62.146 GW, 
+        respectively. 
+      </p>
+    </section>
+    <section class="data data_type_interactive">
+      <h2 class="data__title" id="interactive map">Interactive Map</h2>
+      <h2 class="data__subheader">How does each country stack up?</h2>
+      <div class="data__graph-img data__graph-img_type_interactive" id="regions_div" style="max-width: 1280px"></div>
+      <h4 class="data__subtitle">[FIGURE 5: Interactive map that displays each country's total solar energy capacity in MW, as well as the number of solar projects it contains]</h4>
+      <p class="data__writeup">Figure 5 is a map of the world that was created with the help of Google Charts. Specifically, their visualization module and GeoChart method. Google charts
+        provides a basic template of JavaScript code for creating the map above, and all that is left up to the user is provide the desired data in an array format to their GeoChart method.
+        The curated python dataframe from the data analysis was converted to a JSON file and uploaded to GitHub, where data was pulled from it using JavaScript. The data was formatted into a 
+        JavaScript array that Google's GeoChart method recognized and could use to plot the above interactive map. The user can hover over countries to see their total solar energy capacity and total 
+      number of solar projects. The display options of the map could also be modified as desired, so the color scheme was updated to match the rest of the webpage more appropriately. Making the map 
+      responsive required writing a small JavaScript function that would redraw the map anytime the webpage window was resized.</p>
+    </section>
+    <section class="data">
+      <h2 class="data__title data__title-conclusion">Conclusion</h2>
+      <p class="data__writeup">After review of all the above plots, a few observations were readily apparent. Most solar energy projects can be found between the 40th parallel South (latitude) and 
+        the 60th parallel North (latitude), which makes sense since they are centered about the Equator. It is most common around the 40th parallel North (latitude) to find a solar project that has
+        a capacity of approximately 25 MW. The median capacity of a solar energy project by region is greatest in Oceania, with a median capacity of 75.0 MW, followed by a tie for 2nd between Africa, 
+        North America, and the Middle east, all with a median capacity of 50.0 MW. The United States, China, India, and Australia are responsible for the highest capacities of solar energy. Lastly, it
+        should be noted that average capacity of each solar energy project is fairly similar, and the avenue to increase solar energy capacity is to build more projects. This can 
+      be confirmed by viewing the number of solar energy projects of countries with very high total solar energy capacities compared to the number of solar energy projects of countries with rather
+      low solar energy capacities. While building a solar energy project in a spot that gets sun year-round is important, it does not appear that longitude plays an important role in potential solar energy capacity.
+    </section>
+    <footer class="footer">
+      <img
+        class="footer__transition-image"
+        src="./images/footer_background.png"
+        alt="green energy city graphic"
+      />
+      <h2 class="footer__about-the-team">About the Team</h2>
+      <div class="team__container">
+        <div class="team__member">
+          <img class="team__member-img" src="images/Manager.svg" alt="headshot of Javier Moreno Flores">
+          <h3 class="team__member-name">Javier Moreno Flores</h3>
+          <p class="team__member-bio">Javier is a Data Science student with Practicum, and is very knowledgeable and experienced 
+            in data preprocessing, analysis, and plotting. He is also well-versed in creating machine learning algorithms. Javier grew up in Hendersonville, NC, before 
+            graduating with a Bachelor of Science in Biochemistry from the University of Florida. His hobbies include hiking, as well as learning Russian. Javier aspires to be a biostatistician 
+            in the near future.
+          </p>
+        </div>
+        <div class="team__member">
+          <img class="team__member-img" src="images/Judge.svg" alt="headshot of Timothy Horth">
+          <h3 class="team__member-name">Timothy Horth</h3>
+          <p class="team__member-bio">Tim is a Software Engineering student with Practicum, and enjoys building functional 
+            and aesthetically pleasing webpages. He grew up in Cleveland, OH before graduating with a Bachelor of Science degree in Mechanical Engineering from Clemson University. Tim's hobbies include
+            soccer, working out, and reading, and he aspires to be a software engineer to create products that enrich people's lives.
+          </p>
+        </div>
+      </div>
+      <div class="contact__social-block">
+        <ul class="contact__icons-list">
+          <li class="contact__icons-item">
+            <a class="contact__link" href="#">
+              <img
+                src="./images/facebook_white.svg"
+                class="contact__icon"
+                alt="Facebook"
+              />
+            </a>
+          </li>
+          <li class="contact__icons-item">
+            <a class="contact__link" href="#">
+              <img
+                src="./images/instagram_white.svg"
+                class="contact__icon"
+                alt="instagram"
+              />
+            </a>
+          </li>
+          <li class="contact__icons-item">
+            <a class="contact__link" href="#">
+              <img
+                src="./images/email_white.svg"
+                class="contact__icon"
+                alt="LinkedIn"
+              />
+            </a>
+          </li>
+      </div>
+      <div class="footer__copyright">
+        <p class="footer__copyright-symbol-and-year">&copy; 2022</p>
+        <p class="footer__copyright-text">
+          Javier Moreno Flores - Timothy Horth
+        </p>
+      </div>
+    </footer>
+  </body>
+  <script
+    type="text/javascript"
+    src="https://www.gstatic.com/charts/loader.js"
+  ></script>
+  <script type="text/javascript" src="./scripts/script.js"></script>
+</html>

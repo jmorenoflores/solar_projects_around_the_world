@@ -1,0 +1,16 @@
+/* import normalize.css and fonts.css */
+@import url("../vendor/normalize.css");
+@import url("../vendor/fonts/fonts.css");
+
+@import url("../blocks/page.css");
+@import url("../blocks/header.css");
+@import url("../blocks/nav.css");
+@import url("../blocks/data.css");
+@import url("../blocks/contact.css");
+@import url("../blocks/footer.css");
+@import url("../blocks/team.css");
+
+/*adding smooth scrolling to entire page*/
+html {
+  scroll-behavior: smooth;
+}

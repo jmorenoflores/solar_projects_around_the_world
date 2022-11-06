@@ -1,0 +1,79 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #8cc962;
+  padding: 0;
+  margin: 0 auto 0;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.footer__transition-image {
+  max-width: 1280px;
+  width: 100%;
+}
+
+.footer__about-the-team {
+  margin: 0;
+  padding: 50px 0 0 0;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 62px;
+  line-height: 1.2;
+}
+
+.footer__copyright {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-areas: "copyright authors";
+  font-family: "Inter", sans-serif;
+  gap: 0 14px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  padding-bottom: 30px;
+}
+
+.footer__copyright-symbol-and-year {
+  margin: 0;
+  grid-area: copyright;
+  text-align: center;
+  color: white;
+}
+
+.footer__copyright-text {
+  margin: 0;
+  grid-area: authors;
+  color: white;
+}
+
+@media screen and (max-width: 880px) {
+  .footer__about-the-team {
+    font-size: 42px;
+  }
+
+  .footer__copyright {
+    grid-template-columns: repeat(1, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      "authors"
+      "copyright";
+    font-size: 16px;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer__copyright {
+    font-size: 12px;
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer__about-the-team {
+    font-size: 22px;
+  }
+}

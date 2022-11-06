@@ -1,0 +1,163 @@
+.header {
+  width: 100%;
+  max-width: 1280px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.header__image-container {
+  width: 100%;
+  max-width: 1280px;
+}
+
+.header__title {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 116px;
+  left: 54%;
+  color: #008000;
+  font-family: "Josefin Slab", serif;
+  font-style: normal;
+  font-size: 72px;
+  line-height: 1;
+  max-width: 465px;
+  width: 100%;
+}
+
+.header__prompt {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 17px 40px 30px;
+  color: black;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 58px;
+  line-height: 1.2;
+  text-align: left;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.header__overview {
+  margin: 0;
+  padding: 0 40px;
+  color: black;
+  text-align: left;
+  font-size: 20px;
+  text-align: justify;
+  line-height: 1.4;
+}
+
+.header__sun {
+  background-color: #faf756;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  z-index: 0;
+  position: absolute;
+  top: -121px;
+  left: -91px;
+}
+
+.header__sun_animation_blurred {
+  animation: pulsate 1.3s forwards ease-in-out 0s infinite;
+}
+
+@media screen and (max-width: 1280px) {
+  .header__title {
+    top: 9.05vw;
+    font-size: 5.6vw;
+    max-width: 465px;
+    width: 37vw;
+  }
+
+  .header__sun {
+    background-color: #faf756;
+    width: 19.5vw;
+    height: 19.5vw;
+    border-radius: 50%;
+    z-index: 0;
+    position: absolute;
+    top: -9.45vw;
+    left: -7.1vw;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .header__prompt {
+    font-size: 48px;
+  }
+
+  .header__overview {
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .header__prompt {
+    font-size: 40px;
+    padding: 17px 30px 15px;
+  }
+  .header__overview {
+    font-size: 14px;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .header__prompt {
+    font-size: 34px;
+  }
+
+  .header__overview {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 562px) {
+  .header__prompt {
+    font-size: 28px;
+    padding: 17px 25px 20px;
+  }
+
+  .header__overview {
+    font-size: 11px;
+    padding: 0 25px 0;
+  }
+}
+
+@media screen and (max-width: 452px) {
+  .header__prompt {
+    font-size: 25px;
+  }
+
+  .header__overview {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .header__prompt {
+    font-size: 20px;
+    padding: 17px 25px 20px;
+  }
+
+  .header__overview {
+    font-size: 9px;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.5, 1.5);
+    opacity: 0;
+  }
+}
